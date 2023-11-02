@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="LavaLadder"
+run/main_scene="res://player.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=480
 
 [dotnet]
 
