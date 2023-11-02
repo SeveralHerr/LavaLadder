@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=3 format=3 uid="uid://dg87wfewi23ek"]
 
 [ext_resource type="PackedScene" uid="uid://bojo1heqww22j" path="res://player.tscn" id="1_sktu4"]
+[ext_resource type="PackedScene" uid="uid://eaagr82icqsq" path="res://lava.tscn" id="2_jve7c"]
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_sktu4")]
 position = Vector2(160, 82)
+
+[node name="Lava" parent="." instance=ExtResource("2_jve7c")]
