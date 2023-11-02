@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0y46grsb4bvp"
-path="res://.godot/imported/LavaLadder.png-35c74ac8a9eca0c08157fd6a8a3fbf23.ctex"
+uid="uid://cpvtl0itxcaof"
+path="res://.godot/imported/index.png-5122033cac747157decad52589e2295c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LavaLadder.png"
-dest_files=["res://.godot/imported/LavaLadder.png-35c74ac8a9eca0c08157fd6a8a3fbf23.ctex"]
+source_file="res://index.png"
+dest_files=["res://.godot/imported/index.png-5122033cac747157decad52589e2295c.ctex"]
 
 [params]
 

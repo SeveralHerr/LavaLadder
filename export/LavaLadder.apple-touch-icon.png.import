@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbdc2j630qd5x"
-path="res://.godot/imported/LavaLadder.icon.png-8f3f7acd872fcde3612db18b26aee333.ctex"
+uid="uid://4kfyu3gc15mg"
+path="res://.godot/imported/LavaLadder.apple-touch-icon.png-8712934b2e8185167b9cc1ccda5d0802.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LavaLadder.icon.png"
-dest_files=["res://.godot/imported/LavaLadder.icon.png-8f3f7acd872fcde3612db18b26aee333.ctex"]
+source_file="res://export/LavaLadder.apple-touch-icon.png"
+dest_files=["res://.godot/imported/LavaLadder.apple-touch-icon.png-8712934b2e8185167b9cc1ccda5d0802.ctex"]
 
 [params]
 
