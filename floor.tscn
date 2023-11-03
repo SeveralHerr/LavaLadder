@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://da4hhhbgydji7"]
+
+[ext_resource type="Texture2D" uid="uid://dwn01i55ox858" path="res://sprites/floor.png" id="1_4a6af"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irba1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4a6af")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62lbh"]
+size = Vector2(494, 32)
+
+[node name="Floor" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(15.4688, 1)
+sprite_frames = SubResource("SpriteFrames_irba1")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_62lbh")

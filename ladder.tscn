@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c487reyqwb6dc"]
+
+[ext_resource type="Texture2D" uid="uid://cs7m6f38k0gh7" path="res://sprites/ladder.png" id="1_js5qo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvitb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_js5qo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn1d8"]
+size = Vector2(31, 226)
+
+[node name="Ladder" type="Area2D"]
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, 97)
+scale = Vector2(0.96875, 7.0625)
+sprite_frames = SubResource("SpriteFrames_vvitb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 97)
+shape = SubResource("RectangleShape2D_hn1d8")

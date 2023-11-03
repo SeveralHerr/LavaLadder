@@ -14,13 +14,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uhsd"]
-size = Vector2(726, 139)
+size = Vector2(2254, 742.5)
 
 [node name="lava" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(358, 414.5)
-scale = Vector2(22.6875, 4.34375)
+position = Vector2(21.2499, 792.75)
+scale = Vector2(70.5781, 26.5469)
 sprite_frames = SubResource("SpriteFrames_pwu8k")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -28,6 +28,6 @@ collision_mask = 0
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(359, 414.5)
+position = Vector2(19, 738.25)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8uhsd")

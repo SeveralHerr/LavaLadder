@@ -1,11 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=5 format=3 uid="uid://dg87wfewi23ek"]
 
-[ext_resource type="PackedScene" uid="uid://bojo1heqww22j" path="res://player.tscn" id="1_sktu4"]
+[ext_resource type="PackedScene" uid="uid://da4hhhbgydji7" path="res://floor.tscn" id="1_hwami"]
 [ext_resource type="PackedScene" uid="uid://eaagr82icqsq" path="res://lava.tscn" id="2_jve7c"]
+[ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
+[ext_resource type="PackedScene" uid="uid://c487reyqwb6dc" path="res://ladder.tscn" id="4_0qx2e"]
 
 [node name="Main" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("1_sktu4")]
-position = Vector2(160, 82)
+[node name="Ladder" parent="." instance=ExtResource("4_0qx2e")]
+position = Vector2(215, 162)
+collision_mask = 2
+
+[node name="Floor2" parent="." instance=ExtResource("1_hwami")]
+position = Vector2(478, 301)
+
+[node name="Floor" parent="." instance=ExtResource("1_hwami")]
+position = Vector2(-48, 300)
 
 [node name="Lava" parent="." instance=ExtResource("2_jve7c")]
+
+[node name="player3" parent="." instance=ExtResource("2_k8kxr")]
+position = Vector2(129, 94)
+collision_layer = 3
+
+[connection signal="area_entered" from="Ladder" to="player3" method="_on_ladder_area_entered"]
+[connection signal="area_exited" from="Ladder" to="player3" method="_on_ladder_area_exited"]
+[connection signal="body_entered" from="Ladder" to="player3" method="_on_ladder_body_entered"]
+[connection signal="body_exited" from="Ladder" to="player3" method="_on_ladder_body_exited"]
