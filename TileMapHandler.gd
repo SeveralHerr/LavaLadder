@@ -74,12 +74,12 @@ func _physics_process(delta):
 	for tileRow in tileRowArray:
 		if tileRow[0].get_child(0).position.y > 140:
 			tileRow.shuffle()
-			for t in tileRow:
-				for index in range(tileRow.size()):
-					var tile = t[index]
-					var child = tile.get_child(0)
-					child.position.y = -100
-					child.position.x = index * columnSize
+			for index in range(tileRow.size()):
+				var tile = tileRow[index]
+				var child = tile.get_child(0)
+				child.position.y = -100
+				child.position.x = index * columnSize
+
 	
 func d_process(delta):
 	if tileRow[0].get_child(0).position.y > 140:
