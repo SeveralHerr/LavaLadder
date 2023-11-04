@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=6 format=3 uid="uid://dg87wfewi23ek"]
 
+[ext_resource type="Texture2D" uid="uid://n61ayfy2hwj5" path="res://sprites/background.png" id="2_fxkha"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
+[ext_resource type="Texture2D" uid="uid://bo3hoka3baol1" path="res://sprites/background2.png" id="3_arv7d"]
 [ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
 [ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
 
 [node name="Main" type="Node" groups=["Player", "Tiles"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2049
+z_index = -4
+position = Vector2(96, 71)
+texture = ExtResource("2_fxkha")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_arv7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(174, -1)
+texture = ExtResource("2_fxkha")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D/Sprite2D"]
+texture = ExtResource("3_arv7d")
 
 [node name="player3" parent="." instance=ExtResource("2_k8kxr")]
 position = Vector2(179, 44)

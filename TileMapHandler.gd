@@ -59,6 +59,6 @@ func _process(delta):
 			child.position.y = 130
 
 
-func _on_shrink_timer_timeout():
+func r_on_shrink_timer_timeout():
 	var tiles = get_tree().get_nodes_in_group("Tiles")[1]
 	tiles.scale = tiles.scale * 0.99
