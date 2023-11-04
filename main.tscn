@@ -1,21 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=6 format=3 uid="uid://dg87wfewi23ek"]
 
-[ext_resource type="PackedScene" uid="uid://da4hhhbgydji7" path="res://floor.tscn" id="1_hwami"]
 [ext_resource type="PackedScene" uid="uid://eaagr82icqsq" path="res://lava.tscn" id="2_jve7c"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
-[ext_resource type="PackedScene" uid="uid://c487reyqwb6dc" path="res://ladder.tscn" id="4_0qx2e"]
+[ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
+[ext_resource type="Script" path="res://tile_map.gd" id="4_7dr4j"]
+[ext_resource type="PackedScene" uid="uid://ccj081hk7chms" path="res://tile_map.tscn" id="5_debj7"]
 
 [node name="Main" type="Node"]
-
-[node name="Ladder" parent="." instance=ExtResource("4_0qx2e")]
-position = Vector2(215, 162)
-collision_mask = 2
-
-[node name="Floor2" parent="." instance=ExtResource("1_hwami")]
-position = Vector2(478, 301)
-
-[node name="Floor" parent="." instance=ExtResource("1_hwami")]
-position = Vector2(-48, 300)
 
 [node name="Lava" parent="." instance=ExtResource("2_jve7c")]
 
@@ -23,7 +14,17 @@ position = Vector2(-48, 300)
 position = Vector2(129, 94)
 collision_layer = 3
 
-[connection signal="area_entered" from="Ladder" to="player3" method="_on_ladder_area_entered"]
-[connection signal="area_exited" from="Ladder" to="player3" method="_on_ladder_area_exited"]
-[connection signal="body_entered" from="Ladder" to="player3" method="_on_ladder_body_entered"]
-[connection signal="body_exited" from="Ladder" to="player3" method="_on_ladder_body_exited"]
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_g2ufy")
+
+[node name="TileMap" parent="Node2D" node_paths=PackedStringArray("playerObj") instance=ExtResource("5_debj7")]
+layer_0/tile_data = PackedInt32Array(1179652, 65536, 0, 1179653, 65536, 0, 1179654, 65536, 0, 1179655, 65536, 0, 1179656, 65536, 0, 1179657, 65536, 0, 1179658, 65536, 0, 1179659, 65536, 0, 1179660, 65536, 0, 1179661, 65536, 0, 1179662, 65536, 0, 1179663, 65536, 0, 1179664, 65536, 0, 1179665, 65536, 0, 1179666, 65536, 0, 1179667, 65536, 0, 1179668, 65536, 0, 1179669, 65536, 0, 1179648, 65536, 0, 1179649, 65536, 0, 1179650, 65536, 0, 1179651, 65536, 0, 589842, 65536, 0, 589841, 65536, 0, 589840, 65536, 0, 589839, 65536, 0, 589838, 65536, 0, 589837, 65536, 0, 589836, 65536, 0, 589835, 65536, 0, 589834, 65536, 0, 589833, 65536, 0, 589832, 65536, 0, 589831, 65536, 0, 589830, 65536, 0, 589829, 65536, 0, 589828, 65536, 0, 589844, 65536, 0, 589845, 65536, 0, 589846, 65536, 0, 1179670, 65536, 0, 589827, 65536, 0, 589826, 65536, 0, 589825, 65536, 0, 589824, 65536, 0)
+layer_1/name = "Ladder"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(589843, 0, 0, 655379, 0, 0, 720915, 0, 0, 786451, 0, 0, 851987, 0, 0, 917523, 0, 0, 983059, 0, 0, 1048595, 0, 0, 1114131, 0, 0)
+script = ExtResource("4_7dr4j")
+playerObj = NodePath("../../player3")
