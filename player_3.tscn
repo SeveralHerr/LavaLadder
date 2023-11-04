@@ -21,7 +21,7 @@ animations = [{
 script = ExtResource("1_3n7dy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_3xi4w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,6 +1,7 @@
 extends TileMap
 
-@onready var playerObj = get_tree().get_nodes_in_group("Player")[0]
+@onready var playerObj = get_tree().get_nodes_in_group("Player")[1]
+var wasInBounds = false;
 
 
 var gravity = 10 
@@ -14,19 +15,28 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _physics_process(delta):
-	if playerObj is player:
-		print(playerObj)
-		position.y += gravity * delta
-		var tile_coords := local_to_map(to_local(playerObj.global_position))
-		var layer := 1
+	position.y += gravity * delta
+	var tile_coords := local_to_map(to_local(playerObj.global_position))
+	var layer := 1
+
+	# Get the used rectangle of the TileMap
+	var used_rect = get_used_rect()
+
+	# Check if the tile coordinates are within the bounds of the used rectangle
+	if tile_coords.x < used_rect.position.x or tile_coords.y < used_rect.position.y or tile_coords.x >= used_rect.end.x or tile_coords.y >= used_rect.end.y:
+		if wasInBounds == true:
+			playerObj.set_state(playerObj.PlayerState.Walking)        
+			wasInBounds = false
 		
-		var tile_data = get_cell_tile_data(layer, tile_coords)
-		
-		if tile_data and tile_data.get_custom_data("Ladder"):
-			playerObj.set_state(playerObj.PlayerState.OnLadder)
-			# Your ladder climbing code here
-		else:
-			playerObj.set_state(playerObj.PlayerState.Walking)		
-			# Your other movement code here
+		return
+
+	wasInBounds = true
+	var tile_data = get_cell_tile_data(layer, tile_coords)
+	
+	if tile_data and tile_data.get_custom_data("Ladder"):
+		playerObj.set_state(playerObj.PlayerState.OnLadder)
+		# Your ladder climbing code here
+	else:
+		playerObj.set_state(playerObj.PlayerState.Walking)        
+		# Your other movement code here

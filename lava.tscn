@@ -29,5 +29,4 @@ gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(19, 738.25)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8uhsd")

@@ -11,7 +11,7 @@ var screen_size # Size of the game window.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump = -2300;
 var on_ladder = false
-var climb_speed = 90
+var climb_speed = -66
 var state : PlayerState = PlayerState.Walking
 
 func f_process(delta):
@@ -83,8 +83,9 @@ func _physics_process(delta):
 			
 	if state == PlayerState.OnLadder:
 		gravity = 0
-		if Input.is_action_just_pressed("move_up"):
-			velocity.y -= climb_speed
+		if Input.is_action_pressed("move_up"):
+			velocity.y = climb_speed
+			print(velocity.y)
 		else:
 			velocity.y = 0;
 	else:
