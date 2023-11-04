@@ -1,6 +1,7 @@
 extends TileMap
 
-@export var playerObj: player
+@onready var playerObj = get_tree().get_nodes_in_group("Player")[0]
+
 
 var gravity = 10 
 
@@ -15,15 +16,17 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	position.y += gravity * delta
-	var tile_coords := local_to_map(to_local(playerObj.global_position))
-	var layer := 1
-	
-	var tile_data = get_cell_tile_data(layer, tile_coords)
-	
-	if tile_data and tile_data.get_custom_data("Ladder"):
-		playerObj.set_state(playerObj.PlayerState.OnLadder)
-		# Your ladder climbing code here
-	else:
-		playerObj.set_state(playerObj.PlayerState.Walking)		
-		# Your other movement code here
+	if playerObj is player:
+		print(playerObj)
+		position.y += gravity * delta
+		var tile_coords := local_to_map(to_local(playerObj.global_position))
+		var layer := 1
+		
+		var tile_data = get_cell_tile_data(layer, tile_coords)
+		
+		if tile_data and tile_data.get_custom_data("Ladder"):
+			playerObj.set_state(playerObj.PlayerState.OnLadder)
+			# Your ladder climbing code here
+		else:
+			playerObj.set_state(playerObj.PlayerState.Walking)		
+			# Your other movement code here

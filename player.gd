@@ -28,6 +28,7 @@ func set_state(new_state: PlayerState):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	add_to_group("Player")
 
 func f_physics_process(delta):
 	if on_ladder || state == PlayerState.OnLadder:
@@ -74,7 +75,6 @@ func ff_physics_process(delta):
 	
 func _physics_process(delta):
 	#var velocity = Vector2()
-	print(gravity)
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * speed
