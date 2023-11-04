@@ -25,6 +25,5 @@ func _physics_process(delta):
 		playerObj.set_state(playerObj.PlayerState.OnLadder)
 		# Your ladder climbing code here
 	else:
-		playerObj.set_state(playerObj.PlayerState.Walking)
-			
+		playerObj.set_state(playerObj.PlayerState.Walking)		
 		# Your other movement code here

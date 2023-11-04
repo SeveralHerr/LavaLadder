@@ -6,12 +6,12 @@ enum PlayerState {
 	OnLadder,
 	Walking
 }
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 200 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump = -2300;
 var on_ladder = false
-var climb_speed = 200
+var climb_speed = 90
 var state : PlayerState = PlayerState.Walking
 
 func f_process(delta):
@@ -52,7 +52,7 @@ func f_physics_process(delta):
 			
 	move_and_slide()
 	
-func _physics_process(delta):
+func ff_physics_process(delta):
 	print(gravity)
 	if state != PlayerState.OnLadder:
 		velocity.y += gravity
@@ -70,6 +70,28 @@ func _physics_process(delta):
 	else: 
 		velocity.x = move_toward(velocity.x, 0, speed)
 			
+	move_and_slide()
+	
+func _physics_process(delta):
+	#var velocity = Vector2()
+	print(gravity)
+	var direction = Input.get_axis("move_left", "move_right")
+	if direction:
+		velocity.x = direction * speed
+	else: 
+		velocity.x = move_toward(velocity.x, 0, speed)
+			
+	if state == PlayerState.OnLadder:
+		gravity = 0
+		if Input.is_action_just_pressed("move_up"):
+			velocity.y -= climb_speed
+		else:
+			velocity.y = 0;
+	else:
+		gravity = 500
+		velocity.y += gravity * delta
+		
+	#velocity.y += gravity * delta
 	move_and_slide()
 
 func _on_ladder_area_entered(area):
