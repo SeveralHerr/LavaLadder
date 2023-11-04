@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfp5p16jiuo1n"]
+
+[ext_resource type="Texture2D" uid="uid://t3kjg5d1jbyy" path="res://sprites/lava2.png" id="1_dq56n"]
+[ext_resource type="Texture2D" uid="uid://cf8fqc3eis01i" path="res://sprites/lava3.png" id="2_apch4"]
+[ext_resource type="Texture2D" uid="uid://bqwliafieupuc" path="res://sprites/lava4.png" id="3_dpfrv"]
+[ext_resource type="Texture2D" uid="uid://doy01rrtt8r0j" path="res://sprites/lava5.png" id="4_vyquj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjwho"]
+texture = ExtResource("1_dq56n")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dicue"]
+texture = ExtResource("2_apch4")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5266p"]
+texture = ExtResource("3_dpfrv")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dbm64"]
+texture = ExtResource("4_vyquj")
+0:0/animation_columns = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_vlgy8"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rjwho")
+sources/1 = SubResource("TileSetAtlasSource_dicue")
+sources/2 = SubResource("TileSetAtlasSource_5266p")
+sources/3 = SubResource("TileSetAtlasSource_dbm64")
+
+[node name="Lava" type="TileMap"]
+tile_set = SubResource("TileSet_vlgy8")
+format = 2
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()

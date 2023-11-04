@@ -1,15 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dg87wfewi23ek"]
 
-[ext_resource type="PackedScene" uid="uid://eaagr82icqsq" path="res://lava.tscn" id="2_jve7c"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
 [ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
+[ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
 
 [node name="Main" type="Node" groups=["Player", "Tiles"]]
 
-[node name="Lava" parent="." instance=ExtResource("2_jve7c")]
-
 [node name="player3" parent="." instance=ExtResource("2_k8kxr")]
-position = Vector2(452, 236)
+position = Vector2(179, 44)
 collision_layer = 3
 
 [node name="TileMapHandler" type="Node2D" parent="."]
@@ -17,5 +15,9 @@ script = ExtResource("3_g2ufy")
 
 [node name="ShrinkTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Lava2" parent="." instance=ExtResource("4_xym0b")]
+position = Vector2(-320, -960)
+layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0, 4522011, 3, 0, 4522012, 3, 0, 4522013, 3, 0, 4522014, 3, 0, 4522015, 3, 0, 4522016, 3, 0, 4522017, 3, 0, 4522018, 3, 0, 4522019, 3, 0, 4522004, 3, 0, 4522005, 3, 0, 4522006, 3, 0, 4522007, 3, 0)
 
 [connection signal="timeout" from="ShrinkTimer" to="TileMapHandler" method="_on_shrink_timer_timeout"]
