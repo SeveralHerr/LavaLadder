@@ -1,10 +1,12 @@
 extends Node2D
 
 @export var tilemap1: TileMap
+@export var bottom: Area2D
 var tileScene: PackedScene = preload("res://tile_map_1.tscn")
 var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var tileRow = []
 var tileRow2 = []
+var tileRow3 = []
 var columns = 8
 var columnSize = 112
 
@@ -24,7 +26,7 @@ func _create_row():
 		
 		add_child(instance)
 		var child = instance.get_child(0)
-		child.position.y = 200
+		child.position.y = -60
 		child.position.x = (columnSize * i)
 		tileRow.append(instance)
 		add_to_group("Tiles")
@@ -41,24 +43,56 @@ func _create_row():
 		
 		add_child(instance)
 		var child = instance.get_child(0)
-		child.position.y =88
+		child.position.y = 20
 		child.position.x = (columnSize * i)
 		tileRow2.append(instance)
 		add_to_group("Tiles")
+		
+	for i in range(columns):
+		randomize()  # Seed the random number generator
+		var random_number = round(randf_range(1, 2))  # Get a random number between 1 and 2
+		var instance
+		
+		if random_number == 1:
+			instance = tileScene.instantiate()
+		else:
+			instance = tileSceneNoLadder.instantiate()
+		
+		add_child(instance)
+		var child = instance.get_child(0)
+		child.position.y = -140
+		child.position.x = (columnSize * i)
+		tileRow3.append(instance)
+		add_to_group("Tiles")
+	
+
 	
 	
 func _process(delta):
-
-	if tileRow[0].get_child(0).position.y > 350:
-		for tile in tileRow:
+	print(tileRow[0].get_child(0).position.y)
+	if tileRow[0].get_child(0).position.y > 140:
+		tileRow.shuffle()
+		for index in range(tileRow.size()):
+			var tile = tileRow[index]
 			var child = tile.get_child(0)
-			child.position.y = 130
-	if tileRow2[0].get_child(0).position.y > 350:
-		for tile in tileRow2:
+			child.position.y = -100
+			child.position.x = index * columnSize
+	if tileRow2[0].get_child(0).position.y > 140:
+		tileRow2.shuffle()
+		for index in range(tileRow2.size()):
+			var tile = tileRow2[index]
 			var child = tile.get_child(0)
-			child.position.y = 130
+			child.position.y = -100
+			child.position.x = index * columnSize
+	if tileRow3[0].get_child(0).position.y > 140:
+		tileRow3.shuffle()
+		for index in range(tileRow3.size()):
+			var tile = tileRow3[index]
+			var child = tile.get_child(0)
+			child.position.y = -100
+			child.position.x = index * columnSize
 
 
-func r_on_shrink_timer_timeout():
+func _on_shrink_timer_timeout():
 	var tiles = get_tree().get_nodes_in_group("Tiles")[1]
 	tiles.scale = tiles.scale * 0.99

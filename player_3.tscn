@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf7yepc3vwsrv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3n7dy"]
-[ext_resource type="Texture2D" uid="uid://cfn3dprmgtvtf" path="res://sprites/player.png" id="2_485ev"]
+[ext_resource type="Texture2D" uid="uid://cywt8te0cn8ey" path="res://sprites/knight.png" id="2_1iisl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xi4w"]
-size = Vector2(11, 10)
+size = Vector2(10, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_56ewn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_485ev")
+"texture": ExtResource("2_1iisl")
 }],
 "loop": true,
 "name": &"default",
@@ -21,12 +21,11 @@ animations = [{
 script = ExtResource("1_3n7dy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -5)
+position = Vector2(-1, -7)
 shape = SubResource("RectangleShape2D_3xi4w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-6, -10)
-scale = Vector2(0.34375, 0.3125)
+position = Vector2(-8, -15)
 sprite_frames = SubResource("SpriteFrames_56ewn")
 centered = false
 

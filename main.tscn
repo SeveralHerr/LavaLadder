@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=7 format=3 uid="uid://dg87wfewi23ek"]
 
 [ext_resource type="Texture2D" uid="uid://n61ayfy2hwj5" path="res://sprites/background.png" id="2_fxkha"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
 [ext_resource type="Texture2D" uid="uid://bo3hoka3baol1" path="res://sprites/background2.png" id="3_arv7d"]
 [ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
 [ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o4o0"]
 
 [node name="Main" type="Node" groups=["Player", "Tiles"]]
 
@@ -28,8 +30,9 @@ texture = ExtResource("3_arv7d")
 position = Vector2(179, 44)
 collision_layer = 3
 
-[node name="TileMapHandler" type="Node2D" parent="."]
+[node name="TileMapHandler" type="Node2D" parent="." node_paths=PackedStringArray("bottom")]
 script = ExtResource("3_g2ufy")
+bottom = NodePath("../Area2D")
 
 [node name="ShrinkTimer" type="Timer" parent="."]
 autostart = true
@@ -38,4 +41,12 @@ autostart = true
 position = Vector2(-320, -960)
 layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0, 4522011, 3, 0, 4522012, 3, 0, 4522013, 3, 0, 4522014, 3, 0, 4522015, 3, 0, 4522016, 3, 0, 4522017, 3, 0, 4522018, 3, 0, 4522019, 3, 0, 4522004, 3, 0, 4522005, 3, 0, 4522006, 3, 0, 4522007, 3, 0)
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(115, 186)
+shape = SubResource("RectangleShape2D_4o4o0")
+
 [connection signal="timeout" from="ShrinkTimer" to="TileMapHandler" method="_on_shrink_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="TileMapHandler" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="TileMapHandler" method="_on_area_2d_body_entered"]

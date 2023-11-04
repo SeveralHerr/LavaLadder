@@ -9,7 +9,7 @@ enum PlayerState {
 @export var speed = 200 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var jump = -2300;
+var jump = -200;
 var on_ladder = false
 var climb_speed = -66
 var state : PlayerState = PlayerState.Walking
@@ -81,6 +81,8 @@ func _physics_process(delta):
 	else: 
 		velocity.x = move_toward(velocity.x, 0, speed)
 			
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump
 	if state == PlayerState.OnLadder:
 		gravity = 0
 		if Input.is_action_pressed("move_up"):
