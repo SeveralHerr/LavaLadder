@@ -7,6 +7,7 @@ var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var tileRow = []
 var tileRow2 = []
 var tileRow3 = []
+var tileRowArray = []
 var columns = 8
 var columnSize = 112
 
@@ -65,11 +66,22 @@ func _create_row():
 		tileRow3.append(instance)
 		add_to_group("Tiles")
 	
-
+		tileRowArray.append(tileRow)
+		tileRowArray.append(tileRow2)
+		tileRowArray.append(tileRow3)
 	
+func _physics_process(delta):
+	for tileRow in tileRowArray:
+		if tileRow[0].get_child(0).position.y > 140:
+			tileRow.shuffle()
+			for t in tileRow:
+				for index in range(tileRow.size()):
+					var tile = t[index]
+					var child = tile.get_child(0)
+					child.position.y = -100
+					child.position.x = index * columnSize
 	
-func _process(delta):
-	print(tileRow[0].get_child(0).position.y)
+func d_process(delta):
 	if tileRow[0].get_child(0).position.y > 140:
 		tileRow.shuffle()
 		for index in range(tileRow.size()):
@@ -93,6 +105,3 @@ func _process(delta):
 			child.position.x = index * columnSize
 
 
-func _on_shrink_timer_timeout():
-	var tiles = get_tree().get_nodes_in_group("Tiles")[1]
-	tiles.scale = tiles.scale * 0.99

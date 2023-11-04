@@ -27,7 +27,3 @@ sources/1 = SubResource("TileSetAtlasSource_5apcy")
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource("TileSet_1f2ms")
 format = 2
-
-[node name="Spritesheet" type="Sprite2D" parent="."]
-position = Vector2(-52, -9)
-texture = ExtResource("1_w15c5")

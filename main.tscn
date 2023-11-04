@@ -44,7 +44,7 @@ layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(115, 186)
+position = Vector2(118, 284)
 shape = SubResource("RectangleShape2D_4o4o0")
 
 [connection signal="timeout" from="ShrinkTimer" to="TileMapHandler" method="_on_shrink_timer_timeout"]

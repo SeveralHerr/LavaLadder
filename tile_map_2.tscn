@@ -22,5 +22,5 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = -2
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(262150, 983040, 8, 196614, 983040, 8, 131078, 983040, 8, 131077, 983040, 8, 65541, 983040, 8, 5, 983040, 8, 6, 983040, 8)
 script = ExtResource("2_41rn7")
