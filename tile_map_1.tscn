@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://iss5u2qywvwi"]
+[gd_scene load_steps=4 format=3 uid="uid://iss5u2qywvwi"]
 
 [ext_resource type="Script" path="res://tile_map.gd" id="1_2lufq"]
+[ext_resource type="TileSet" uid="uid://onva1vjnrxkn" path="res://new_tile_set.tres" id="2_28frd"]
 [ext_resource type="PackedScene" uid="uid://ccj081hk7chms" path="res://tile_map.tscn" id="2_ll5di"]
 
 [node name="TileMap1" type="Node2D"]
 
 [node name="TileMap" parent="." instance=ExtResource("2_ll5di")]
+tile_set = ExtResource("2_28frd")
 layer_0/name = "Ladder"
 layer_0/tile_data = PackedInt32Array(262147, 0, 3, 327683, 0, 3, 196611, 0, 3, 131075, 0, 3, 65539, 0, 3, 3, 0, 3)
 layer_1/name = "Floor"
