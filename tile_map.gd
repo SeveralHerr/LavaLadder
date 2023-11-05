@@ -1,19 +1,12 @@
 extends TileMap
 
 @onready var playerObj = get_tree().get_nodes_in_group("Player")[1]
+@onready var visibility_notifier := $VisibleOnScreenNotifier2D
 var wasInBounds = false;
 
 
 var gravity = 10 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	position.y += gravity * delta
@@ -43,3 +36,14 @@ func _physics_process(delta):
 		playerObj.set_state(playerObj.PlayerState.Walking)  
 		playerObj.collision_mask = 1
 		# Your other movement code here
+		
+		
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	#visible = true
+	print("entered")
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	#visible = false
+	print("exited")
+

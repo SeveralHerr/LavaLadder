@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsxhlpjssl653"]
+
+[ext_resource type="TileSet" uid="uid://cofyt3wv7d6bb" path="res://new_tile_set.tres" id="1_b8bit"]
+[ext_resource type="Script" path="res://Chunks/testchunk2.gd" id="1_nyxo8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_b8bit")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = -2
+layer_0/tile_data = PackedInt32Array(196610, 983040, 7, 262146, 917504, 8, 327682, 917504, 8, 327681, 851968, 8, 393217, 851968, 8, 262145, 851968, 8, 458753, 917504, 9, 393218, 917504, 8, 262147, 917504, 7, 327683, 917504, 8, 393219, 917504, 8, 393220, 917504, 8, 327684, 917504, 8, 262148, 983040, 7, 327685, 983040, 7, 393221, 983040, 9, 458754, 917504, 9, 458755, 917504, 9, 458756, 983040, 9, 196609, 851968, 7, 65541, 983040, 9, 65540, 917504, 9, 65539, 851968, 9, 3, 851968, 7, 4, 917504, 7, 5, 983040, 7)
+layer_1/name = "Floor"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -2
+layer_1/tile_data = PackedInt32Array(8, 655360, 3, 7, 655360, 3, 6, 851968, 4, 5, 917504, 4, 4, 655360, 3, 3, 655360, 3, 2, 655360, 3, 1, 655360, 3, 0, 655360, 3, 458752, 655360, 1, 458753, 655360, 1, 458754, 655360, 1, 458755, 655360, 1, 458756, 655360, 1, 458757, 655360, 2, 458758, 655360, 1, 458759, 655360, 1, 458760, 655360, 1, 393222, 720896, 1, 393221, 589824, 1, 393219, 917504, 5, 393218, 589824, 1, 327683, 589824, 1, 65542, 720896, 3, 65541, 589824, 3)
+layer_2/name = "Ladder"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array(393220, 0, 3, 327684, 0, 3, 262148, 0, 3, 196612, 0, 3, 131076, 0, 3, 65540, 0, 3, 4, 0, 3, -65532, 0, 3)
+script = ExtResource("1_nyxo8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="TileMap"]
+position = Vector2(72, 63.5)
+scale = Vector2(8.2, 7.05)

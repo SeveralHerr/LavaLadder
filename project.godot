@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=720
 window/size/viewport_height=480
-window/stretch/scale=3.0
+window/vsync/vsync_mode=0
 
 [input]
 
@@ -53,5 +53,6 @@ move_up={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

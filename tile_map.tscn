@@ -1,4 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccj081hk7chms"]
+[gd_scene load_steps=4 format=3 uid="uid://ccj081hk7chms"]
+
+[ext_resource type="Texture2D" uid="uid://e73i0y472n3m" path="res://sprites/spritesheet.png" id="1_w15c5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5apcy"]
+texture = ExtResource("1_w15c5")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_1f2ms"]
 physics_layer_0/collision_layer = 1
@@ -6,8 +22,8 @@ custom_data_layer_0/name = "Ladder"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "test"
 custom_data_layer_1/type = 1
+sources/1 = SubResource("TileSetAtlasSource_5apcy")
 
 [node name="TileMap" type="TileMap"]
-position = Vector2(106, -93)
 tile_set = SubResource("TileSet_1f2ms")
 format = 2

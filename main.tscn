@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
 [ext_resource type="Texture2D" uid="uid://bo3hoka3baol1" path="res://sprites/background2.png" id="3_arv7d"]
 [ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
-[ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
+[ext_resource type="PackedScene" path="res://lavascene.tscn" id="4_xym0b"]
 [ext_resource type="Script" path="res://Scalers.gd" id="5_rarse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o4o0"]
@@ -16,7 +16,8 @@
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visibility_layer = 2049
 z_index = -4
-position = Vector2(96, 71)
+position = Vector2(83, 82)
+scale = Vector2(0.815, 0.815)
 texture = ExtResource("2_fxkha")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
@@ -33,12 +34,12 @@ texture = ExtResource("3_arv7d")
 position = Vector2(179, 44)
 collision_layer = 3
 
-[node name="ShrinkTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="Lava2" parent="." instance=ExtResource("4_xym0b")]
-position = Vector2(-320, -960)
-layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0, 4522011, 3, 0, 4522012, 3, 0, 4522013, 3, 0, 4522014, 3, 0, 4522015, 3, 0, 4522016, 3, 0, 4522017, 3, 0, 4522018, 3, 0, 4522019, 3, 0, 4522004, 3, 0, 4522005, 3, 0, 4522006, 3, 0, 4522007, 3, 0)
+[node name="Camera2D2" type="Camera2D" parent="player3"]
+zoom = Vector2(5.065, 5.065)
+limit_left = -1410065408
+limit_top = 0
+limit_bottom = 155
+position_smoothing_speed = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -61,6 +62,9 @@ bottom = NodePath("../../../Area2D")
 shape = SubResource("RectangleShape2D_vwcbu")
 disabled = true
 
-[connection signal="timeout" from="ShrinkTimer" to="Scalers/RigidBody2D/TileMapHandler" method="_on_shrink_timer_timeout"]
+[node name="Lava2" parent="." instance=ExtResource("4_xym0b")]
+position = Vector2(-320, -960)
+layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0, 4522011, 3, 0, 4522012, 3, 0, 4522013, 3, 0, 4522014, 3, 0, 4522015, 3, 0, 4522016, 3, 0, 4522017, 3, 0, 4522018, 3, 0, 4522019, 3, 0, 4522004, 3, 0, 4522005, 3, 0, 4522006, 3, 0, 4522007, 3, 0)
+
 [connection signal="area_entered" from="Area2D" to="Scalers/RigidBody2D/TileMapHandler" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="Scalers/RigidBody2D/TileMapHandler" method="_on_area_2d_body_entered"]
