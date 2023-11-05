@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsxhlpjssl653"]
 
-[ext_resource type="TileSet" uid="uid://cofyt3wv7d6bb" path="res://new_tile_set.tres" id="1_b8bit"]
+[ext_resource type="TileSet" uid="uid://onva1vjnrxkn" path="res://new_tile_set.tres" id="1_b8bit"]
 [ext_resource type="Script" path="res://Chunks/testchunk2.gd" id="1_nyxo8"]
 
 [node name="Node2D" type="Node2D"]

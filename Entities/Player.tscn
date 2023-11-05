@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://jg27ci0hf0lx"]
+
+[ext_resource type="Script" path="res://Entities/StateMachine.gd" id="1_o5jpe"]
+[ext_resource type="Texture2D" uid="uid://cywt8te0cn8ey" path="res://sprites/knight.png" id="2_488og"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n83c8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_488og")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khd22"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_o5jpe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n83c8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_khd22")
