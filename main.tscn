@@ -55,10 +55,10 @@ position = Vector2(119, 104)
 collision_layer = 3
 camera = NodePath("../Camera2D2")
 
-[node name="TileMapHandler" type="Node2D" parent="." node_paths=PackedStringArray("bottom", "camera")]
+[node name="TileMapHandler" type="Node2D" parent="." node_paths=PackedStringArray("camera", "playerObj")]
 script = ExtResource("3_g2ufy")
-bottom = NodePath("")
 camera = NodePath("../Camera2D2")
+playerObj = NodePath("../player3")
 
 [node name="Scaler" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("5_rarse")

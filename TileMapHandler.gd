@@ -2,6 +2,7 @@ extends Node2D
 
 @export var bottom: Area2D
 @export var camera: Camera2D
+@export var playerObj: player
 var tileScene: PackedScene = preload("res://tile_map_1.tscn")
 var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var chunkWidth = 112
@@ -27,9 +28,15 @@ func _physics_process(delta):
 		if chunkRow[0].get_child(0).position.y > 140:
 			MoveRowToTop(chunkRow)
 			
-	camera.limit_left = chunkRows[0][0].get_child(0).position.x
+		if playerObj.position.x <= GetLeftMostChunk(chunkRow).get_child(0).position.x + chunkWidth:
+			MoveRightChunkToLeftSide(chunkRow)
+			
+		if playerObj.position.x >= GetRightMostChunk(chunkRow).get_child(0).position.x - chunkWidth:
+			MoveLeftChunkToRightSide(chunkRow)
+			
+	#camera.limit_left = chunkRows[0][0].get_child(0).position.x
 	var chunkRow = chunkRows[0]
-	camera.limit_right = chunkRow[chunkRow.size() - 1].get_child(0).position.x
+	#camera.limit_right = chunkRow[chunkRow.size() - 1].get_child(0).position.x
 	
 func GenerateRow(chunks):
 	var currentChunkRow = []
@@ -96,12 +103,36 @@ func AddChunk():
 	add_to_group("Tiles")
 	return instance
 	
-
+func GetLeftMostChunk(chunkRow):
+	var leftestX = 10000000000000
+	var leftestChunk
+	for chunk in chunkRow:
+		var x = chunk.get_child(0).position.x
+		if x <= leftestX:
+			leftestX = x
+			leftestChunk = chunk
+	return leftestChunk
 	
+func GetRightMostChunk(chunkRow):
+	var rightX = -10000000000000
+	var rightChunk
+	for chunk in chunkRow:
+		var x = chunk.get_child(0).position.x
+		if x >= rightX:
+			rightX = x
+			rightChunk = chunk
+	return rightChunk
 
+func MoveRightChunkToLeftSide(chunkRow):
+	var rightChunk = GetRightMostChunk(chunkRow)
+	var leftChunk = GetLeftMostChunk(chunkRow)
+	rightChunk.get_child(0).position.x = leftChunk.get_child(0).position.x - chunkWidth
 
-
-
+func MoveLeftChunkToRightSide(chunkRow):
+	var rightChunk = GetRightMostChunk(chunkRow)
+	var leftChunk = GetLeftMostChunk(chunkRow)
+	leftChunk.get_child(0).position.x = rightChunk.get_child(0).position.x + chunkWidth
+	
 func _on_gravity_timer_timeout():
 	print(gravity)
 	gravity = ceil(gravity * 1.1)
