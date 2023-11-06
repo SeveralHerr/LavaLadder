@@ -7,21 +7,29 @@ var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var chunkWidth = 112
 var chunkHeight = 80
 var chunkRows = []
+var gravity = 10
 	
 func _physics_process(delta):
 	var camera_size = get_viewport_rect().size / camera.zoom
-	var chunksNeeded = ceil(camera_size.x / chunkWidth) + 1
+	var chunksNeeded = ceil(camera_size.x / chunkWidth) + 3
 	var rowsNeeded = ceil(camera_size.y / chunkHeight) + 1
 	
 	if chunkRows.size() <= rowsNeeded:
 		GenerateRow(chunksNeeded)
 		
 	for chunkRow in chunkRows:
+		for chunk in chunkRow:
+			chunk.get_child(0).position.y += gravity * delta
+		
 		if chunkRow.size() <= chunksNeeded:
 			AddChunkToRow(chunkRow)
 
 		if chunkRow[0].get_child(0).position.y > 140:
 			MoveRowToTop(chunkRow)
+			
+	camera.limit_left = chunkRows[0][0].get_child(0).position.x
+	var chunkRow = chunkRows[0]
+	camera.limit_right = chunkRow[chunkRow.size() - 1].get_child(0).position.x
 	
 func GenerateRow(chunks):
 	var currentChunkRow = []
@@ -92,3 +100,8 @@ func AddChunk():
 	
 
 
+
+
+func _on_gravity_timer_timeout():
+	print(gravity)
+	gravity = ceil(gravity * 1.1)

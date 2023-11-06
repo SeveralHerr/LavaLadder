@@ -142,3 +142,14 @@ func _on_ladder_body_entered(body):
 func _on_ladder_body_exited(body):
 	on_ladder = false
 
+
+
+func _on_area_2d_body_entered(body):
+	print("Collision Detected with: ", body.name)
+	if  body is player:
+		get_tree().change_scene_to_file("res://gameover.tscn")
+
+
+func _on_area_2d_area_entered(area):
+	print("Collision Detected with: ", area.name)
+	get_tree().change_scene_to_file("res://gameover.tscn")

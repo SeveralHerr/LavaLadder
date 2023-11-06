@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=8 format=3 uid="uid://dg87wfewi23ek"]
 
 [ext_resource type="Texture2D" uid="uid://n61ayfy2hwj5" path="res://sprites/background.png" id="2_fxkha"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
 [ext_resource type="Script" path="res://Scalers.gd" id="5_rarse"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o4o0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcbu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7dws"]
+size = Vector2(253.5, 12.5)
 
 [node name="Main" type="Node" groups=["Player", "Tiles"]]
 
@@ -43,33 +42,31 @@ position = Vector2(-1382, -3998)
 scale = Vector2(4, 4)
 layer_0/tile_data = PackedInt32Array(4522008, 3, 0, 4522009, 3, 0, 4522010, 3, 0, 4522011, 3, 0, 4522012, 3, 0, 4522013, 3, 0, 4522014, 3, 0, 4522015, 3, 0, 4522016, 3, 0, 4522017, 3, 0, 4522018, 3, 0, 4522019, 3, 0, 4522004, 3, 0, 4522005, 3, 0, 4522006, 3, 0, 4522007, 3, 0)
 
+[node name="Area2D" type="Area2D" parent="Camera2D2/CanvasLayer"]
+position = Vector2(-1382, -3998)
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/CanvasLayer/Area2D"]
+position = Vector2(448.75, 1113.25)
+shape = SubResource("RectangleShape2D_d7dws")
+
 [node name="player3" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_k8kxr")]
 position = Vector2(119, 104)
 collision_layer = 3
 camera = NodePath("../Camera2D2")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TileMapHandler" type="Node2D" parent="." node_paths=PackedStringArray("bottom", "camera")]
+script = ExtResource("3_g2ufy")
+bottom = NodePath("")
+camera = NodePath("../Camera2D2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(118, 284)
-shape = SubResource("RectangleShape2D_4o4o0")
-
-[node name="Scalers" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+[node name="Scaler" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("5_rarse")
 camera = NodePath("../Camera2D2")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Scalers"]
-gravity_scale = 0.0
-linear_damp_mode = 1
+[node name="GravityTimer" type="Timer" parent="."]
+autostart = true
 
-[node name="TileMapHandler" type="Node2D" parent="Scalers/RigidBody2D" node_paths=PackedStringArray("bottom", "camera")]
-script = ExtResource("3_g2ufy")
-bottom = NodePath("../../../Area2D")
-camera = NodePath("../../../Camera2D2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scalers/RigidBody2D"]
-shape = SubResource("RectangleShape2D_vwcbu")
-disabled = true
-
-[connection signal="area_entered" from="Area2D" to="Scalers/RigidBody2D/TileMapHandler" method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="Scalers/RigidBody2D/TileMapHandler" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Camera2D2/CanvasLayer/Area2D" to="player3" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Camera2D2/CanvasLayer/Area2D" to="player3" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="GravityTimer" to="TileMapHandler" method="_on_gravity_timer_timeout"]

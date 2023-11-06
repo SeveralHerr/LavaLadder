@@ -8,7 +8,7 @@ var gravity = 10
 
 
 func _physics_process(delta):
-	position.y += gravity * delta
+
 	var tile_coords := local_to_map(to_local(playerObj.global_position))
 	var layer := 0
 

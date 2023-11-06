@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var scaleFactor = 0.999999
+	var scaleFactor = 0.99999
 	camera.zoom *= scaleFactor
 	#camera.limit_top = -199
 	camera.limit_bottom = 155
