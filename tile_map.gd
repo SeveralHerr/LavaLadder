@@ -1,7 +1,6 @@
 extends TileMap
 
 @onready var playerObj = get_tree().get_nodes_in_group("Player")[1]
-@onready var visibility_notifier := $VisibleOnScreenNotifier2D
 var wasInBounds = false;
 
 
@@ -37,13 +36,4 @@ func _physics_process(delta):
 		playerObj.collision_mask = 1
 		# Your other movement code here
 		
-		
-func _on_visible_on_screen_notifier_2d_screen_entered():
-	#visible = true
-	print("entered")
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	#visible = false
-	print("exited")
 

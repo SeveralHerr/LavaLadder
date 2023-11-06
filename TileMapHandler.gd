@@ -1,107 +1,94 @@
 extends Node2D
 
-@export var tilemap1: TileMap
 @export var bottom: Area2D
+@export var camera: Camera2D
 var tileScene: PackedScene = preload("res://tile_map_1.tscn")
 var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
-var tileRow = []
-var tileRow2 = []
-var tileRow3 = []
-var tileRowArray = []
-var columns = 8
-var columnSize = 112
-
-func _ready():
-	_create_row()
-	
-func _create_row():
-	for i in range(columns):
-		randomize()  # Seed the random number generator
-		var random_number = round(randf_range(1, 2))  # Get a random number between 1 and 2
-		var instance
-		
-		if random_number == 1:
-			instance = tileScene.instantiate()
-		else:
-			instance = tileSceneNoLadder.instantiate()
-		
-		add_child(instance)
-		var child = instance.get_child(0)
-		child.position.y = -60
-		child.position.x = (columnSize * i)
-		tileRow.append(instance)
-		add_to_group("Tiles")
-		
-	for i in range(columns):
-		randomize()  # Seed the random number generator
-		var random_number = round(randf_range(1, 2))  # Get a random number between 1 and 2
-		var instance
-		
-		if random_number == 1:
-			instance = tileScene.instantiate()
-		else:
-			instance = tileSceneNoLadder.instantiate()
-		
-		add_child(instance)
-		var child = instance.get_child(0)
-		child.position.y = 20
-		child.position.x = (columnSize * i)
-		tileRow2.append(instance)
-		add_to_group("Tiles")
-		
-	for i in range(columns):
-		randomize()  # Seed the random number generator
-		var random_number = round(randf_range(1, 2))  # Get a random number between 1 and 2
-		var instance
-		
-		if random_number == 1:
-			instance = tileScene.instantiate()
-		else:
-			instance = tileSceneNoLadder.instantiate()
-		
-		add_child(instance)
-		var child = instance.get_child(0)
-		child.position.y = -140
-		child.position.x = (columnSize * i)
-		tileRow3.append(instance)
-		add_to_group("Tiles")
-	
-		tileRowArray.append(tileRow)
-		tileRowArray.append(tileRow2)
-		tileRowArray.append(tileRow3)
+var chunkWidth = 112
+var chunkHeight = 80
+var chunkRows = []
 	
 func _physics_process(delta):
-	for tileRow in tileRowArray:
-		if tileRow[0].get_child(0).position.y > 140:
-			tileRow.shuffle()
-			for index in range(tileRow.size()):
-				var tile = tileRow[index]
-				var child = tile.get_child(0)
-				child.position.y = -100
-				child.position.x = index * columnSize
+	var camera_size = get_viewport_rect().size / camera.zoom
+	var chunksNeeded = ceil(camera_size.x / chunkWidth) + 1
+	var rowsNeeded = ceil(camera_size.y / chunkHeight) + 1
+	
+	if chunkRows.size() <= rowsNeeded:
+		GenerateRow(chunksNeeded)
+		
+	for chunkRow in chunkRows:
+		if chunkRow.size() <= chunksNeeded:
+			AddChunkToRow(chunkRow)
+
+		if chunkRow[0].get_child(0).position.y > 140:
+			MoveRowToTop(chunkRow)
+	
+func GenerateRow(chunks):
+	var currentChunkRow = []
+	for i in chunks:		
+		var chunk = AddChunk()
+		var pos
+		
+		if chunkRows.size() <= 0:
+			pos = Vector2(chunkWidth * i, 20)
+		else:
+			var lastRow = GetTopRow()[0].get_child(0)
+			var newX = chunkWidth * i
+			var newY = lastRow.position.y - chunkHeight
+
+			pos = Vector2(newX, newY)
+			
+		chunk.get_child(0).position = pos
+		currentChunkRow.append(chunk)
+		
+	chunkRows.append(currentChunkRow)
+
+func MoveRowToTop(chunkRow):
+	var topRow = GetTopRow()
+	var lastRow = topRow[topRow.size() - 1]  # Get the last row from the result of GetTopRow()
+
+	var newY = lastRow.get_child(0).position.y - chunkHeight
+
+	for i in range(chunkRow.size()):
+		var newX = chunkWidth * i
+		var pos = Vector2(newX, newY)
+		chunkRow[i].get_child(0).position = pos
+
+
+func GetTopRow():
+	var lowestY = 1000000
+	var lowestChunk
+	for chunkRow in chunkRows:
+		var y = chunkRow[0].get_child(0).position.y
+		if y <= lowestY:
+			lowestY = y
+			lowestChunk = chunkRow
+			
+	return lowestChunk
+	
+func AddChunkToRow(chunkRow):
+	var chunk = AddChunk()
+	var y = chunkRow[0].get_child(0).position.y
+	var x = chunkRow[chunkRow.size() - 1].get_child(0).position.x + chunkWidth
+		
+	chunk.get_child(0).position = Vector2(x, y)
+	chunkRow.append(chunk)
+
+func AddChunk():
+	randomize()  # Seed the random number generator
+	var random_number = round(randf_range(1, 2))  # Get a random number between 1 and 2
+	var instance
+	
+	if random_number == 1:
+		instance = tileScene.instantiate()
+	else:
+		instance = tileSceneNoLadder.instantiate()
+	
+	add_child(instance)
+	add_to_group("Tiles")
+	return instance
+	
 
 	
-func d_process(delta):
-	if tileRow[0].get_child(0).position.y > 140:
-		tileRow.shuffle()
-		for index in range(tileRow.size()):
-			var tile = tileRow[index]
-			var child = tile.get_child(0)
-			child.position.y = -100
-			child.position.x = index * columnSize
-	if tileRow2[0].get_child(0).position.y > 140:
-		tileRow2.shuffle()
-		for index in range(tileRow2.size()):
-			var tile = tileRow2[index]
-			var child = tile.get_child(0)
-			child.position.y = -100
-			child.position.x = index * columnSize
-	if tileRow3[0].get_child(0).position.y > 140:
-		tileRow3.shuffle()
-		for index in range(tileRow3.size()):
-			var tile = tileRow3[index]
-			var child = tile.get_child(0)
-			child.position.y = -100
-			child.position.x = index * columnSize
 
 
