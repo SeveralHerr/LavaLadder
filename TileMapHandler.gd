@@ -28,7 +28,7 @@ func _physics_process(delta):
 		if chunkRow[0].get_child(0).position.y > 140:
 			MoveRowToTop(chunkRow)
 			
-		if playerObj.position.x <= GetLeftMostChunk(chunkRow).get_child(0).position.x + chunkWidth:
+		if playerObj.position.x <= GetLeftMostChunk(chunkRow).get_child(0).position.x + chunkWidth*chunksNeeded:
 			MoveRightChunkToLeftSide(chunkRow)
 			
 		if playerObj.position.x >= GetRightMostChunk(chunkRow).get_child(0).position.x - chunkWidth:
