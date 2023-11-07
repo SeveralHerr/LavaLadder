@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg87wfewi23ek"]
+[gd_scene load_steps=10 format=3 uid="uid://dg87wfewi23ek"]
 
 [ext_resource type="Texture2D" uid="uid://n61ayfy2hwj5" path="res://sprites/background.png" id="2_fxkha"]
 [ext_resource type="PackedScene" uid="uid://bf7yepc3vwsrv" path="res://player_3.tscn" id="2_k8kxr"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://TileMapHandler.gd" id="3_g2ufy"]
 [ext_resource type="PackedScene" uid="uid://bfp5p16jiuo1n" path="res://lavascene.tscn" id="4_xym0b"]
 [ext_resource type="Script" path="res://Scalers.gd" id="5_rarse"]
+[ext_resource type="Texture2D" uid="uid://byrdkhflgcj0w" path="res://sprites/Background3.png" id="7_n4htc"]
+[ext_resource type="PackedScene" uid="uid://ch3k5r5maeg7v" path="res://Chunks/tile_map.tscn" id="8_pb831"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7dws"]
 size = Vector2(253.5, 12.5)
@@ -13,6 +15,7 @@ size = Vector2(253.5, 12.5)
 [node name="Main" type="Node" groups=["Player", "Tiles"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 visibility_layer = 2049
 z_index = -4
 position = Vector2(83, 82)
@@ -66,6 +69,13 @@ camera = NodePath("../Camera2D2")
 
 [node name="GravityTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(120, 77)
+scale = Vector2(1.48125, 1.52151)
+texture = ExtResource("7_n4htc")
+
+[node name="TileMap" parent="." instance=ExtResource("8_pb831")]
 
 [connection signal="area_entered" from="Camera2D2/CanvasLayer/Area2D" to="player3" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Camera2D2/CanvasLayer/Area2D" to="player3" method="_on_area_2d_body_entered"]
