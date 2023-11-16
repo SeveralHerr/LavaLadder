@@ -1,8 +1,13 @@
 extends Node2D
+class_name TileMapHandler
 
 @export var bottom: Area2D
 @export var camera: Camera2D
 @export var playerObj: player
+
+signal generated_chunk(position)
+
+
 var tileScene: PackedScene = preload("res://tile_map_1.tscn")
 var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var chunkWidth = 112
@@ -53,6 +58,9 @@ func GenerateRow(chunks):
 
 			pos = Vector2(newX, newY)
 			
+		print("This is my fault")
+		generated_chunk.emit(pos)
+			
 		chunk.get_child(0).position = pos
 		currentChunkRow.append(chunk)
 		
@@ -101,6 +109,7 @@ func AddChunk():
 	
 	add_child(instance)
 	add_to_group("Tiles")
+
 	return instance
 	
 func GetLeftMostChunk(chunkRow):
