@@ -10,10 +10,13 @@ signal generated_chunk(position)
 
 var tileScene: PackedScene = preload("res://tile_map_1.tscn")
 var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
+@onready var platform_handler = $"../PlatformHandler"
+
+
 var chunkWidth = 112
 var chunkHeight = 80
 var chunkRows = []
-var gravity = 10
+var gravity = 0
 	
 func _physics_process(delta):
 	var camera_size = get_viewport_rect().size / camera.zoom
@@ -59,7 +62,9 @@ func GenerateRow(chunks):
 			pos = Vector2(newX, newY)
 			
 		print("This is my fault")
-		generated_chunk.emit(pos)
+		var platform = platform_handler.create(Vector2(pos.x + chunkWidth/2, pos.y + chunkHeight/2))
+		chunk.get_child(0).add_child(platform)
+		#generated_chunk.emit(Vector2(pos.x + chunkWidth/2, pos.y + chunkHeight/2))
 			
 		chunk.get_child(0).position = pos
 		currentChunkRow.append(chunk)
@@ -144,4 +149,5 @@ func MoveLeftChunkToRightSide(chunkRow):
 	
 func _on_gravity_timer_timeout():
 	print(gravity)
-	gravity = ceil(gravity * 1.1)
+	#gravity = ceil(gravity * 1.1)
+	gravity = ceil(gravity * 1.005)

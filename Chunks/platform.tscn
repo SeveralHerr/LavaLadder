@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8uon2ptayow3"]
+[gd_scene load_steps=3 format=3 uid="uid://c8uon2ptayow3"]
 
+[ext_resource type="Script" path="res://Chunks/platform.gd" id="1_ecupq"]
 [ext_resource type="TileSet" uid="uid://onva1vjnrxkn" path="res://new_tile_set.tres" id="1_ljy8i"]
 
 [node name="Platform" type="Node2D"]
+script = ExtResource("1_ecupq")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ljy8i")
