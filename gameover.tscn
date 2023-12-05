@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://bouqa8qob5k0r"]
+[gd_scene load_steps=2 format=3 uid="uid://bouqa8qob5k0r"]
+
+[ext_resource type="Script" path="res://gameover.gd" id="1_s0fbb"]
 
 [node name="Node" type="Node"]
+script = ExtResource("1_s0fbb")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Game Over"
+text = "Game Over - Click to restart"

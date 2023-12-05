@@ -16,7 +16,7 @@ var tileSceneNoLadder: PackedScene = preload("res://tile_map_2.tscn")
 var chunkWidth = 112
 var chunkHeight = 80
 var chunkRows = []
-var gravity = 0
+var gravity = 5
 	
 func _physics_process(delta):
 	var camera_size = get_viewport_rect().size / camera.zoom
@@ -61,9 +61,9 @@ func GenerateRow(chunks):
 
 			pos = Vector2(newX, newY)
 			
-		print("This is my fault")
-		var platform = platform_handler.create(Vector2(pos.x + chunkWidth/2, pos.y + chunkHeight/2))
-		chunk.get_child(0).add_child(platform)
+		#print("This is my fault")
+		#var platform = platform_handler.create(Vector2(pos.x + chunkWidth/2, pos.y + chunkHeight/2))
+		#chunk.get_child(0).add_child(platform)
 		#generated_chunk.emit(Vector2(pos.x + chunkWidth/2, pos.y + chunkHeight/2))
 			
 		chunk.get_child(0).position = pos
